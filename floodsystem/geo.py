@@ -27,6 +27,11 @@ def stations_by_distance(stations, p):
 
 
 def stations_within_radius(stations, centre, r):
+    """For a list of stations (MonitoringStation object),
+        centre (latitude, longitude), and radius r (float) returns list of
+        stations (MonitoringStation object) within radius r from the
+        given centre"""
+    
     # Get the sorted list of (station, distance) tuples
     stations_dist = stations_by_distance(stations, centre)
 
