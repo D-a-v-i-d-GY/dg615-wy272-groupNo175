@@ -33,7 +33,7 @@ def stations_within_radius(stations, centre, r):
     # Find the index of the furthest station within radius r
     i = 0
     for k in range(len(stations_dist)):
-        if stations_dist[k][1] >= r
+        if stations_dist[k][1] >= r:
             i = k
             break
 
