@@ -15,10 +15,13 @@ def sort_by_distance(stations, p):
     (station, distance) sorted by the distance from the given
     coordinate p"""
 
+    # Create the list of (stations, distance) tuples
     station_dist = []
 
+    # Append data to the list
     for station in stations:
         station_dist.append((station, haversine(p, station.coord)))
 
+    # Return station_dist list sorted by the distance from p
     return sorted_by_key(station_dist, 1)
 
