@@ -58,6 +58,24 @@ def rivers_with_station(stations):
     return list(rivers)
 
 
+def stations_by_river(stations):
+    """Given list of stations (MonitoringStation object), return a
+    dictionary that has names of the rivers as keys and list of the
+    names of the stations that monitor that river as values"""
+    # Get the names of the rivers
+    rivers = rivers_with_station(stations)
+
+    # Initialize the dictionary with the river names as keys and empty lists as values
+    river_dict = {river: [] for river in rivers}
+
+    # Update the dicionary by appending the names of the stations to the corresponding lists
+    for station in stations:
+        river_dict[station.river].append(station.name)
+
+    # Return the produced dictionary
+    return river_dict
+
+
 def rivers_by_station_number(stations, N):
     """Find the N rivers with the greatest number of monitoring stations"""
 
