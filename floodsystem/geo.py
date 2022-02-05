@@ -45,3 +45,20 @@ def stations_within_radius(stations, centre, r):
     # The list is sorted, so return all the entries up to index i.
     # List comprehension is used to drop the distances
     return [station_dist[0] for station_dist in stations_dist[:i]]
+
+def rivers_by_station_number(stations, N):
+    """Find the N rivers with the greatest number of monitoring stations"""
+
+    # Collect all rivers
+    rivers = [station.river for station in stations]
+    
+    # Tally across river set and sort by count
+    sorted_rivers = sorted(
+        [(river, rivers.count(river)) for river in set(rivers)],
+        key= lambda pair: pair[1]
+    )
+
+    # Splice for first N rivers
+    n_rivers = sorted_rivers[:N]
+
+    return n_rivers
