@@ -52,10 +52,11 @@ def rivers_by_station_number(stations, N):
     # Collect all rivers
     rivers = [station.river for station in stations]
     
-    # Tally across river set and sort by count
+    # Tally across river set and sort by descending count
     sorted_rivers = sorted(
         [(river, rivers.count(river)) for river in set(rivers)],
-        key= lambda pair: pair[1]
+        key= lambda pair: pair[1],
+        reverse= True
     )
 
     # Splice for first N rivers
