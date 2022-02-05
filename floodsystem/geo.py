@@ -59,7 +59,10 @@ def rivers_by_station_number(stations, N):
         reverse= True
     )
 
-    # Splice for first N rivers
-    n_rivers = sorted_rivers[:N]
+    # Get all counts to filter for duplicates
+    top_n_counts = set([river[1] for river in sorted_rivers])
+
+    # Filter for only rivers that occur in top N by count
+    n_rivers = [river for river in sorted_rivers if river[1] in list(top_n_counts)[-N:]]
 
     return n_rivers
