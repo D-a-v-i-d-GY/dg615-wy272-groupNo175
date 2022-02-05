@@ -25,3 +25,18 @@ def stations_by_distance(stations, p):
     # Return station_dist list sorted by the distance from p
     return sorted_by_key(station_dist, 1)
 
+
+def stations_within_radius(stations, centre, r):
+    # Get the sorted list of (station, distance) tuples
+    stations_dist = stations_by_distance(stations, centre)
+
+    # Find the index of the furthest station within radius r
+    i = 0
+    for k in range(len(stations_dist)):
+        if stations_dist[k][1] >= r
+            i = k
+            break
+
+    # The list is sorted, so return all the entries up to index i.
+    # List comprehension is used to drop the distances
+    return [station_dist[0] for station_dist in stations_dist[:i]]
