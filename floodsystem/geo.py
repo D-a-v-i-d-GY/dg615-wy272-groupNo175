@@ -9,7 +9,7 @@ geographical data.
 from .utils import sorted_by_key  # noqa
 from haversine import haversine
 
-def sort_by_distance(stations, p):
+def stations_by_distance(stations, p):
     """For a list of stations (MonitoringStation object) and
     coordinate p (latitude, longitude), returns list of tuples
     (station, distance) sorted by the distance from the given
