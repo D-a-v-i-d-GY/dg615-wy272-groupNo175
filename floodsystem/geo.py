@@ -46,6 +46,18 @@ def stations_within_radius(stations, centre, r):
     # List comprehension is used to drop the distances
     return [station_dist[0] for station_dist in stations_dist[:i]]
 
+
+def rivers_with_station(stations):
+    """Given list of stations (MonitoringStation object), return the
+    names of the rivers that are being monitored"""
+
+    # Collect all the names of the rivers in a set to avoid duplicate entries
+    rivers = {station.river for station in stations}
+
+    # Return a list for convenience
+    return list(rivers)
+
+
 def rivers_by_station_number(stations, N):
     """Find the N rivers with the greatest number of monitoring stations"""
 
