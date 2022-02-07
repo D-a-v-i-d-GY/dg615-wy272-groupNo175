@@ -13,5 +13,5 @@ def test_rivers_by_station_number():
     assert len(n_rivers) > 0 and len(n_rivers) < len(stations)
 
     # Check that the returned list is sorted correctly
-    assert sorted(n_rivers, reverse=True) == n_rivers
+    assert sorted(n_rivers, reverse=True, key = lambda x: x[1]) == n_rivers
 

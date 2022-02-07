@@ -76,5 +76,5 @@ def test_inconsistent_typical_range_stations():
     assert len(i_stations) < len(stations)
 
     # Check that each station is inconsistent
-    assert all([station.typical_range_consistent() for station in i_stations])
+    assert not all([station.typical_range_consistent() for station in i_stations])
 
