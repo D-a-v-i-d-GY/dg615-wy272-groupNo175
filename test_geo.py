@@ -1,7 +1,6 @@
 """ Unit test for Geo module"""
 
-from distutils.command.build import build
-from floodsystem.station import build_station_list
+from floodsystem.stationdata import build_station_list
 import floodsystem.geo as geo
 
 # Task 1E
