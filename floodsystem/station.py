@@ -48,6 +48,13 @@ class MonitoringStation:
         if not self.typical_range:
             return False
 
+        # Check that data is tuple of len 2
+        if type(self.typical_range) is tuple:
+            if len(self.typical_range) != 2:
+                return False
+        else:
+            return False
+
         # Check that max > min
         low, high = self.typical_range
         if low > high:
