@@ -3,6 +3,16 @@
 from floodsystem.stationdata import build_station_list
 import floodsystem.geo as geo
 
+# Task 1C
+def test_stations_within_radius():
+    stations = build_station_list()
+    
+    x = (52.2053, 0.1218)
+    # Valid data
+    assert geo.stations_within_radius(stations, x, 10)
+    # Invalid data
+    assert not geo.stations_within_radius(stations, x, -10)
+
 # Task 1D
 def test_rivers_with_station():
     stations = build_station_list()
