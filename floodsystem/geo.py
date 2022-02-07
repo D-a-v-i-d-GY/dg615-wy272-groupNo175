@@ -89,7 +89,7 @@ def rivers_by_station_number(stations, N):
         reverse= True
     )
 
-    # Get all counts to filter for duplicates
+    # Get all counts and filter for duplicates
     top_n_counts = set([river[1] for river in sorted_rivers])
 
     # Filter for only rivers that occur in top N by count

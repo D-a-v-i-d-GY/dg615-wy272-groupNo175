@@ -14,5 +14,5 @@ def run():
     print(sorted([station.name for station in i_stations]))
 
 if __name__ == "__main__":
-    print("*** Task 1E: CUED Part IA Flood Warning System ***")
+    print("*** Task 1F: CUED Part IA Flood Warning System ***")
     run()
