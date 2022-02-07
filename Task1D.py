@@ -12,7 +12,7 @@ def run():
     rivers_with_stat = rivers_with_station(stations)
 
     # Print the quantity of rivers and names of first 10 rivers in alphabetical order
-    print(len(rivers_with_stat), " stations. First 10 - ", sorted(rivers_with_stat)[:10], "\n")
+    print(len(rivers_with_stat), "stations. First 10 -", sorted(rivers_with_stat)[:10], "\n")
 
 
     # Part 2 of Task D
@@ -25,5 +25,5 @@ def run():
         print(f"{river}: ", sorted(river_dict[river]), "\n")
 
 if __name__ == "__main__":
-    print("*** Task 1D: CUED Part IA Flood Warning System ***")
+    print("*** Task 1D: CUED Part IA Flood Warning System ***\n")
     run()

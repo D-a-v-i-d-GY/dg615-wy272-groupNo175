@@ -98,7 +98,7 @@ def rivers_by_station_number(stations, N):
     tallies = {river[1] for river in sorted_rivers}
 
     # Check that N does not exceed number of rivers found
-    if N > tallies:
+    if N > len(tallies):
         print("There are less than N rivers.")
         return False
 

@@ -8,11 +8,12 @@ def run():
     stations = build_station_list()
     
     # Find first N stations
-    n_rivers = rivers_by_station_number(stations, N = 9)
+    N = 9
+    n_rivers = rivers_by_station_number(stations, N)
 
     # Print the result
-    print(n_rivers)
+    print("Top", N, "rivers by monitoring stations:\n", n_rivers)
 
 if __name__ == "__main__":
-    print("*** Task 1E: CUED Part IA Flood Warning System ***")
+    print("*** Task 1E: CUED Part IA Flood Warning System ***\n")
     run()

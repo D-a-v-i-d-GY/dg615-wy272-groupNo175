@@ -3,15 +3,33 @@
 from floodsystem.stationdata import build_station_list
 import floodsystem.geo as geo
 
+# Task 1D
+def test_rivers_with_station():
+    stations = build_station_list()
+
+    monitored_rivers = geo.rivers_with_station(stations)
+    
+    #Check that number of rivers does not exceed total
+    assert len(monitored_rivers) <= len(stations)
+
 # Task 1E
 def test_rivers_by_station_number():
     stations = build_station_list()
-    N = 10
-    n_rivers = geo.rivers_by_station_number(stations, N)
+
+    # Check that N is validated
+    N = -1
+    assert not geo.rivers_by_station_number(stations, N)
+    N = 0
+    assert not geo.rivers_by_station_number(stations, N)
+    N = "sus"
+    assert not geo.rivers_by_station_number(stations, N)
 
     # Check that the returned list is not empty and does not exceed total
-    assert len(n_rivers) > 0 and len(n_rivers) < len(stations)
+    N = 10
+    n_rivers = geo.rivers_by_station_number(stations, N)
+    assert len(n_rivers) > 0 and len(n_rivers) <= len(stations)
 
     # Check that the returned list is sorted correctly
     assert sorted(n_rivers, reverse=True, key = lambda x: x[1]) == n_rivers
 
+    
