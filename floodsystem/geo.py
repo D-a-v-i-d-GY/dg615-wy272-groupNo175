@@ -31,7 +31,11 @@ def stations_within_radius(stations, centre, r):
         centre (latitude, longitude), and radius r (float) returns list of
         stations (MonitoringStation object) within radius r from the
         given centre"""
-    
+    # Validate Entry
+    if r <= 0:
+        print("Radius must be positive.")
+        return False
+
     # Get the sorted list of (station, distance) tuples
     stations_dist = stations_by_distance(stations, centre)
 
