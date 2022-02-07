@@ -9,8 +9,16 @@ def test_rivers_with_station():
 
     monitored_rivers = geo.rivers_with_station(stations)
     
-    #Check that number of rivers does not exceed total
+    # Check that number of rivers does not exceed total
     assert len(monitored_rivers) <= len(stations)
+
+def test_stations_by_river():
+    stations = build_station_list()
+    
+    # Check that sum of stations by river = total stations
+    river_dict = geo.stations_by_river(stations)
+    assert len(stations) == sum([len(rivers) for rivers in river_dict.values()])
+    
 
 # Task 1E
 def test_rivers_by_station_number():
