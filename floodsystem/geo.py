@@ -79,20 +79,30 @@ def stations_by_river(stations):
 def rivers_by_station_number(stations, N):
     """Find the N rivers with the greatest number of monitoring stations"""
 
+    # Validate input
+    if type(N) is not int or N <= 0:
+        print("Invalid N.")
+        return False
+
     # Collect all rivers
     rivers = [station.river for station in stations]
     
-    # Tally across river set and sort by descending count
+    # Tally across river set and sort by descending count (eliminate duplicates)
     sorted_rivers = sorted(
         [(river, rivers.count(river)) for river in set(rivers)],
         key= lambda pair: pair[1],
         reverse= True
     )
 
-    # Get all counts and filter for duplicates
-    top_n_counts = set([river[1] for river in sorted_rivers])
+    # Get all tallies and filter for duplicates
+    tallies = {river[1] for river in sorted_rivers}
+
+    # Check that N does not exceed number of rivers found
+    if N > tallies:
+        print("There are less than N rivers.")
+        return False
 
     # Filter for only rivers that occur in top N by count
-    n_rivers = [river for river in sorted_rivers if river[1] in list(top_n_counts)[-N:]]
+    n_rivers = [river for river in sorted_rivers if river[1] in list(tallies)[-N:]]
 
     return n_rivers
