@@ -2,6 +2,24 @@
 
 from floodsystem.stationdata import build_station_list
 import floodsystem.geo as geo
+from floodsystem.utils import sorted_by_key
+from haversine import haversine
+
+
+# Task 1B
+def test_stations_by_distance():
+    stations = build_station_list()
+
+    # Get the data
+    stations_dist = geo.stations_by_distance(stations, (52.2053, 0.1218))
+
+    # Check that data is sorted by distance
+    assert stations_dist == sorted_by_key(stations_dist, 1)
+
+    # Check (for the first 10 stations) that distance is calculated correctly
+    for i in range(10):
+        assert haversine((52.2053, 0.1218), stations_dist[i][0].coord) == stations_dist[i][1]
+
 
 # Task 1C
 def test_stations_within_radius():
