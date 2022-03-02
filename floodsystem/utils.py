@@ -4,7 +4,7 @@
 """This module contains utility functions.
 
 """
-
+from floodsystem.station import MonitoringStation
 
 def sorted_by_key(x, i, reverse=False):
     """For a list of lists/tuples, return list sorted by the ith
@@ -29,7 +29,17 @@ def sorted_by_key(x, i, reverse=False):
     return sorted(x, key=key, reverse=reverse)
 
 def id_station(stations, name):
-  for station in stations:
+  # Check data consistency
+    if not isinstance(stations, list):
+        return None
+    if not isinstance(name, str):
+        return None
+    if len(stations) == 0:
+        return None
+    if not isinstance(stations[0], MonitoringStation):
+        return None
+
+    for station in stations:
         if station.name == name:
             print(station)
             print(station.latest_level)
