@@ -110,3 +110,34 @@ def rivers_by_station_number(stations, N):
     n_rivers = [river for river in sorted_rivers if river[1] in list(tallies)[-N:]]
 
     return n_rivers
+
+
+def towns_with_station(stations):
+    """Given list of stations (MonitoringStation object), return the
+    names of the towns that have monitoring stations"""
+
+    # Collect all the names of the towns in a set to avoid duplicate entries
+    towns = {station.town for station in stations if station.town is not None}
+
+    # Return a list for convenience
+    return list(towns)
+
+
+def stations_by_towns(stations):
+    """Given list of stations (MonitoringStation object), return a
+    dictionary that has names of the towns as keys and list of the
+    names of the stations that are in that town as values"""
+    
+    # Get the names of the towns
+    towns = towns_with_station(stations)
+
+    # Initialize the dictionary with the town names as keys and empty lists as values
+    town_dict = {town: [] for town in towns}
+
+    # Update the dicionary by appending the names of the stations to the corresponding lists
+    for station in stations:
+        if station.town is not None:
+            town_dict[station.town].append(station)
+
+    # Return the produced dictionary
+    return town_dict
