@@ -129,6 +129,7 @@ def fetch_measure_levels(measure_id, dt):
 
     # Extract dates and levels
     dates, levels = [], []
+
     for measure in data['items']:
         # Convert date-time string to a datetime object
         d = dateutil.parser.parse(measure['dateTime'])
@@ -137,5 +138,8 @@ def fetch_measure_levels(measure_id, dt):
         dates.append(d)
         levels.append(measure['value'])
 
+    # Both lists are reversed due to the way we constructed them, so we need to reverse them back
     dates.reverse()
+    levels.reverse()
+
     return dates, levels
