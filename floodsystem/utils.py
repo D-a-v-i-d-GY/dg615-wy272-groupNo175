@@ -27,3 +27,10 @@ def sorted_by_key(x, i, reverse=False):
         return element[i]
 
     return sorted(x, key=key, reverse=reverse)
+
+def id_station(stations, name):
+  for station in stations:
+        if station.name == name:
+            print(station)
+            print(station.latest_level)
+            print(station.relative_water_level())

@@ -78,3 +78,27 @@ def test_inconsistent_typical_range_stations():
     # Check that each station is inconsistent
     assert not all([station.typical_range_consistent() for station in i_stations])
 
+# Task 2D
+def test_relative_water_level():
+
+    # Default station characteristics
+    s_id = "test-s-id"
+    m_id = "test-m-id"
+    label = "some station"
+    coord = (-2.0, 4.0)
+    trange = (-2.3, 3.4445)
+    river = "River X"
+    town = "My Town"
+    s = MonitoringStation(s_id, m_id, label, coord, trange, river, town)
+    
+    print(s.relative_water_level()) #none
+    
+    s.latest_level = 0
+    s.typical_range = (0, 1)
+    print(s.relative_water_level()) #0
+    
+    s.latest_level = 1
+    print(s.relative_water_level()) #1
+    
+    s.latest_level = 2
+    print(s.relative_water_level()) #2

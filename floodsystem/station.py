@@ -7,6 +7,9 @@ for manipulating/modifying station data
 """
 
 
+from sklearn.decomposition import LatentDirichletAllocation
+
+
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -62,6 +65,23 @@ class MonitoringStation:
         
         # Data is consistent, return True
         return True
+
+    def relative_water_level(self):
+        """Returns the latest water level as a fraction of the typical range
+        """
+        
+        # Check data consistent
+        if not self.typical_range_consistent():
+            return None
+        if self.latest_level == None:
+            return self.latest_level
+       
+        low, high = self.typical_range
+
+        return (self.latest_level-low) / (high - low)
+
+
+
 
 def inconsistent_typical_range_stations(stations):
     """Returns list of stations with inconsistent data"""
