@@ -137,4 +137,5 @@ def fetch_measure_levels(measure_id, dt):
         dates.append(d)
         levels.append(measure['value'])
 
+    dates.reverse()
     return dates, levels
