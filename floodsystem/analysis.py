@@ -33,8 +33,8 @@ def polyfit(dates, levels, p):
     return (poly, float_dates[0])
 
 
-def derivative(poly, x):
-    """Returns derivative of a polynomial function at 
+def first_derivative(poly, x):
+    """Returns the first derivative of a polynomial function at 
        a given point, taking into account the date offset"""
     
     # Check data consistency
@@ -52,3 +52,24 @@ def derivative(poly, x):
     x = x - poly[1]
 
     return sum([poly[0][i] * i * x ** (i - 1) for i in range(1, len(poly[0]) + 1)])
+
+
+def second_derivative(poly, x):
+    """Returns the first derivative of a polynomial function at 
+       a given point, taking into account the date offset"""
+    
+    # Check data consistency
+    if not isinstance(poly, tuple):
+        return None
+    if not isinstance(x, float):
+        return None
+    if len(poly) != 2:
+        return None
+    if not isinstance(poly[0], np.poly1d):
+        return None
+    if not isinstance(poly[1], float):
+        return None
+
+    x = x - poly[1]
+
+    return sum([poly[0][i] * i * (i - 1) * x ** (i - 2) for i in range(2, len(poly[0]) + 1)])
