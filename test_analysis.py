@@ -1,4 +1,3 @@
-from pyrsistent import v
 from floodsystem.analysis import *
 from datetime import datetime
 import numpy as np
