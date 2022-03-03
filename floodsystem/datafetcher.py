@@ -136,7 +136,11 @@ def fetch_measure_levels(measure_id, dt):
 
         # Append data
         dates.append(d)
-        levels.append(measure['value'])
+        # Data doesn't always have 'value' key
+        try:
+            levels.append(measure['value'])
+        except:
+            print("No key 'value'")
 
     # Both lists are reversed due to the way we constructed them, so we need to reverse them back
     dates.reverse()

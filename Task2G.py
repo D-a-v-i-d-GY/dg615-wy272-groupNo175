@@ -12,11 +12,11 @@ from floodsystem.plot import plot_water_levels, plot_water_level_with_fit
 
 def run():
     stations = build_station_list()
-    update_water_levels(stations)   
+    update_water_levels(stations)
 
-    for station in stations[:10]:
-        dates, levels = fetch_measure_levels(station.measure_id, datetime.timedelta(days=1))
-        print(town_risk_assessment(stations, station.town))
+    for station in stations:
+        if station.town is not None:
+            print(town_risk_assessment(stations, station.town))
 
 
 if __name__ == "__main__":

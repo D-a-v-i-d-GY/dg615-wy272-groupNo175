@@ -90,7 +90,8 @@ def town_risk_assessment(stations, town, DT=0.5):
 
         if station.typical_range != None:
             low, high = station.typical_range
-        
+        else:
+            continue
         # Get the relative data
         levels = [(levels[i]-low) / (high - low) for i in range(len(levels))]
 
