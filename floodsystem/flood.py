@@ -13,6 +13,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import math
 import numpy as np
+import warnings
+warnings.simplefilter('ignore', np.RankWarning)
 
 def stations_level_over_threshold(stations, tol):
     """Return all stations with a RELATIVE level greater than a tolerance (tol).
@@ -76,7 +78,6 @@ def town_risk_assessment(stations, town, DT=0.5):
 
     risk_level = 0
     quantity = -1
-
     # Estimate the risk level for each station in the town
     for station in target_stations:
         dates, levels = fetch_measure_levels(
@@ -97,7 +98,7 @@ def town_risk_assessment(stations, town, DT=0.5):
 
         # Set polynomial order depending on the given data complexity
         p = min(math.ceil(95 * (data_complexity(levels) ** 0.95)), 20)
-        p = max(p, 5)
+        p = max(p, 3)
         # print(p)
 
         # Get the fitting polynomial and its derivatives at the current time
@@ -122,7 +123,7 @@ def town_risk_assessment(stations, town, DT=0.5):
     
     # Calculate the average risk level for the town
     total_risk_level = math.ceil(risk_level / quantity)
-    warnings = ["", "severe", "high", "moderate", "low"]
+    warnings = ["", "Severe", "High", "Moderate", "Low"]
 
     return warnings[total_risk_level] 
 

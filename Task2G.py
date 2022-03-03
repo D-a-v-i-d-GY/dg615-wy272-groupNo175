@@ -14,10 +14,11 @@ def run():
     stations = build_station_list()
     update_water_levels(stations)
 
-    for station in stations[-10:]:
+    for station in stations[:10]:
         if station.town is not None:
-            print(town_risk_assessment(stations, station.town))
-
+            risk = town_risk_assessment(stations, station.town)
+            if risk in ["Severe", "High", "Moderate"]:
+                print(station.town+": ", risk)
 
 if __name__ == "__main__":
     print("*** Task 2G: CUED Part IA Flood Warning System ***")
