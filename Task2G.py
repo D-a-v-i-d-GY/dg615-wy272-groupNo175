@@ -14,7 +14,7 @@ def run():
     stations = build_station_list()
     update_water_levels(stations)
 
-    for station in stations:
+    for station in stations[-10:]:
         if station.town is not None:
             print(town_risk_assessment(stations, station.town))
 
