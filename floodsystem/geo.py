@@ -6,7 +6,7 @@ geographical data.
 
 """
 
-from .utils import sorted_by_key  # noqa
+from floodsystem.utils import sorted_by_key  # noqa
 from haversine import haversine
 
 def stations_by_distance(stations, p):
@@ -62,7 +62,7 @@ def rivers_with_station(stations):
     return list(rivers)
 
 
-def stations_by_river(stations):
+def stations_by_river(stations, names=True):
     """Given list of stations (MonitoringStation object), return a
     dictionary that has names of the rivers as keys and list of the
     names of the stations that monitor that river as values"""
@@ -73,9 +73,12 @@ def stations_by_river(stations):
     river_dict = {river: [] for river in rivers}
 
     # Update the dicionary by appending the names of the stations to the corresponding lists
-    for station in stations:
-        river_dict[station.river].append(station.name)
-
+    if names:
+        for station in stations:
+            river_dict[station.river].append(station.name)
+    else:
+        for station in stations:
+                    river_dict[station.river].append(station)
     # Return the produced dictionary
     return river_dict
 
@@ -127,7 +130,7 @@ def stations_by_towns(stations):
     """Given list of stations (MonitoringStation object), return a
     dictionary that has names of the towns as keys and list of the
     names of the stations that are in that town as values"""
-    
+
     # Get the names of the towns
     towns = towns_with_station(stations)
 
