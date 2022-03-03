@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib
 from datetime import datetime
+import math
 
 def polyfit(dates, levels, p):
     """Fits a polynomial of p-th order to the data given (levels vs dates).
@@ -73,3 +74,41 @@ def second_derivative(poly, x):
     x = x - poly[1]
 
     return sum([poly[0][i] * i * (i - 1) * x ** (i - 2) for i in range(2, len(poly[0]) + 1)])
+
+
+def data_complexity(levels):
+    levels = np.array(levels)
+    return np.std(levels, axis=0)
+
+
+def risk_level_allocation(station, first_der, second_der):
+    risk_levels = 0
+
+    relative_water_level = station.relative_water_level()
+    if isinstance(relative_water_level, float) and relative_water_level >= 0:
+        if relative_water_level <= 0.2:
+            risk_levels += 4.0
+        elif relative_water_level > 0.2 and relative_water_level <= 0.95:
+            if second_der <= 0.0:
+                risk_levels += 4.0
+            elif first_der > 0 and math.log10(1.0 + first_der) > 2.0:
+                risk_levels += 2.0
+            else:
+                risk_levels += 3.0
+        elif relative_water_level > 0.95 and relative_water_level <= 2.0:
+            if second_der <= 0.0:
+                risk_levels += 3.0
+            elif first_der > 0 and math.log10(1.0 + first_der) > 2.0:
+                risk_levels += 1.0
+            else:
+                risk_levels += 2.0
+        elif relative_water_level > 2.0 and relative_water_level <= 4.0:
+            if second_der <= 0.0:
+                risk_levels += 2.0
+            else:
+                risk_levels += 1.0
+        else:
+            risk_levels += 1.0
+        # print(risk_levels, relative_water_level, first_der, second_der)
+
+    return(risk_levels)
