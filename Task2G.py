@@ -10,10 +10,15 @@ import matplotlib
 import matplotlib.pyplot as plt
 from floodsystem.plot import plot_water_levels, plot_water_level_with_fit
 
+def run():
+    stations = build_station_list()
+    update_water_levels(stations)   
 
-stations = build_station_list()
-update_water_levels(stations)   
+    for station in stations[:10]:
+        dates, levels = fetch_measure_levels(station.measure_id, datetime.timedelta(days=1))
+        print(town_risk_assessment(stations, station.town))
 
-for station in stations[:10]:
-    dates, levels = fetch_measure_levels(station.measure_id, datetime.timedelta(days=1))
-    print(town_risk_assessment(stations, station.town))
+
+if __name__ == "__main__":
+    print("*** Task 2G: CUED Part IA Flood Warning System ***")
+    run()

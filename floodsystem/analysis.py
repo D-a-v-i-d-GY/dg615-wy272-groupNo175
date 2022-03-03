@@ -77,13 +77,17 @@ def second_derivative(poly, x):
 
 
 def data_complexity(levels):
+    """Assigns complexity to the given data"""
+
     levels = np.array(levels)
     return np.std(levels, axis=0)
 
 
 def risk_level_allocation(station, first_der, second_der):
+    """Assign flood risk level to the given station"""
     risk_levels = 0
 
+    # Risk allocation criteria!
     relative_water_level = station.relative_water_level()
     if isinstance(relative_water_level, float) and relative_water_level >= 0:
         if relative_water_level <= 0.2:
